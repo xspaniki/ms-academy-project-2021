@@ -1,0 +1,20 @@
+%table.table-bordered{ class: "table" }
+  %thead
+    %tr
+      %th= 'ID'
+      %th= 'Meno'
+      %th= 'Priezvisko'
+      %th= 'Cele meno'
+      %th
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.first_name
+        %td= user.last_name
+        %td= user_full_name(user.first_name, user.last_name)
+        %td
+          %a{ href: user_path(user, allowed: true), target: '_blank' }= 'Detail' 
+        %td
+          %a{ href: user_path(user), data: { method: :delete } }= 'Delete'
