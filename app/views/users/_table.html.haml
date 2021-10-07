@@ -4,17 +4,21 @@
       %th= 'ID'
       %th= 'Meno'
       %th= 'Priezvisko'
-      %th= 'Cele meno'
-      %th
-      %th
+      %th= 'Organizácia'
+      - 4.times do
+        %th
   %tbody
     - @users.each do |user|
       %tr
         %td= user.id
         %td= user.first_name
         %td= user.last_name
-        %td= user_full_name(user.first_name, user.last_name)
+        %td= user.organization&.name
         %td
-          %a{ href: user_path(user, allowed: true), target: '_blank' }= 'Detail' 
+          %a.btn.btn-dark{ href: user_path(user, allowed: true), target: '_blank' }= 'Detail' 
         %td
-          %a{ href: user_path(user), data: { method: :delete } }= 'Delete'
+          %a.btn.btn-danger{ href: user_path(user), data: { method: :delete } }= 'Delete'
+        %td
+          %a.btn.btn-primary{ href: edit_user_path(user) }= 'Edit'
+        %td
+          %a.btn.btn-warning{ href: wakeup_user_path(user), data: { method: :post } }= 'Wake up'
