@@ -1,2 +1,6 @@
-%h1= 'Nadpis'
+.alert.alert-success= flash[:success]
+
+%h1= 'List of users'
 = render 'users/table'
+
+%a.btn.btn-primary{ href: new_user_path }= 'New user'

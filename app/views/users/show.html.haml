@@ -1,7 +1,9 @@
-%br
-%br
-%br
+.alert.alert-success= flash[:success]
+
 = @user.id
 = @user.first_name
 = @user.last_name
 = user_full_name(@user.first_name, @user.last_name)
+%br
+
+%a.btn.btn-dark{ href: users_path }= 'Back to lists'
