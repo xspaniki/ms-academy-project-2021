@@ -9,6 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 require("bootstrap/dist/js/bootstrap")
+require("jquery")
+require("@nathanvda/cocoon")
 
 Rails.start()
 Turbolinks.start()

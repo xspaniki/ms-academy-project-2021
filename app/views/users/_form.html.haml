@@ -1,13 +1,20 @@
-= form_for @user do |form|
+= form_for @user do |f|
   .form-group
-    = form.label :first_name, 'First name'
-    = form.text_field :first_name, class: 'form-control'
+    = f.label :first_name, 'First name'
+    = f.text_field :first_name, class: 'form-control'
   .form-group
-    = form.label :last_name, 'Last name'
-    = form.text_field :last_name, class: 'form-control'
+    = f.label :last_name, 'Last name'
+    = f.text_field :last_name, class: 'form-control'
   .form-group
-    = form.label :organization_id, 'Organization'
-    = form.select :organization_id, options_for_select(Organization.all.map{|o| [o.name, o.id] }), {}, { class: 'form-select' }
+    = f.label :organization_id, 'Organization'
+    = f.select :organization_id, options_for_select(Organization.all.map{|o| [o.name, o.id] }), {}, { class: 'form-select' }
   
-  = form.submit
+  %h3.mt-3= 'Addresses'
+  #addresses
+    = f.fields_for :addresses do |address|
+      = render 'address_fields', f: address
+    .links.mb-3
+      = link_to_add_association 'add address', f, :addresses
+
+  = f.submit
   %a.btn.btn-dark{ href: users_path }= 'Back to lists'

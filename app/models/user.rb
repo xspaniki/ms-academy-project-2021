@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   belongs_to :organization, class_name: 'Organization'
-  
+  has_many :addresses
+  accepts_nested_attributes_for :addresses, reject_if: :all_blank, allow_destroy: true
+
   enum sex: { man: 'man', woman: 'woman', non_binary: 'non_binary' }
 
   scope :with_organization, -> { where.not(organization_id: nil) }
