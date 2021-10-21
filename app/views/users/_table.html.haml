@@ -17,7 +17,7 @@
         %td
           %a.btn.btn-dark{ href: user_path(user, allowed: true), target: '_blank' }= 'Detail' 
         %td
-          %a.btn.btn-danger{ href: user_path(user), data: { method: :delete } }= 'Delete'
+          %a.btn.btn-danger{ href: user_path(user), data: { method: :delete, remote: true } }= 'Delete'
         %td
           %a.btn.btn-primary{ href: edit_user_path(user) }= 'Edit'
         %td

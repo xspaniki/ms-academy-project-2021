@@ -1,6 +1,4 @@
-.alert.alert-success= flash[:success]
-
 %h1= I18n.t('users.index.title')
-= render 'users/table'
+#table-wrapper= render 'users/table'
 
 %a.btn.btn-primary{ href: new_user_path }= 'New user'

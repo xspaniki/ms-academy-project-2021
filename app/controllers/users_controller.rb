@@ -31,7 +31,11 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url
+    flash.now[:success] = 'User destroyed...'
+    
+    respond_to do |format|
+      format.js { @users = User.includes(:organization) }
+    end
   end
 
   def wakeup
