@@ -11,7 +11,17 @@ import "channels"
 require("bootstrap/dist/js/bootstrap")
 require("jquery")
 require("@nathanvda/cocoon")
+require("select2")
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(document).ready(function() {
+  $('.js-data-example-ajax').select2({
+    ajax: {
+      url: 'http://localhost:3000/organizations',
+      dataType: 'json'
+    }
+  });
+});

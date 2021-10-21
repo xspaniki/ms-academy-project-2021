@@ -7,7 +7,7 @@
     = f.text_field :last_name, class: 'form-control'
   .form-group
     = f.label :organization_id, 'Organization'
-    = f.select :organization_id, options_for_select(Organization.all.map{|o| [o.name, o.id] }), {}, { class: 'form-select' }
+    = f.select :organization_id, options_for_select([]), {}, { class: 'js-data-example-ajax' }
   
   %h3.mt-3= 'Addresses'
   #addresses
