@@ -61,3 +61,4 @@ gem 'dotenv-rails'
 gem 'haml'
 gem 'awesome_print'
 gem 'cocoon'
+gem 'kaminari' # https://github.com/kaminari/kaminari

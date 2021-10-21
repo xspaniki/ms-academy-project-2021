@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update, :wakeup]
 
   def index
-    @users = User.includes(:organization)
+    @users = User.includes(:organization).page(params[:page])
   end
 
   def new

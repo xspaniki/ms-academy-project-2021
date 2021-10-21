@@ -2,3 +2,20 @@ sk:
   users:
     index:
       title: 'Zoznam používateľov'
+
+  views:
+    pagination:
+      first: "&laquo; Prvá"
+      last: "Posledná &raquo;"
+      previous: "&lsaquo; Predchádzajúca"
+      next: "Ďalšia &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Žiaden záznam pre: %{entry_name}"
+          one: "Zobrazený <b>1</b> záznam pre: %{entry_name}"
+          other: "Zobrazených <b>všetkých %{count}</b> záznamov pre: %{entry_name}"
+      more_pages:
+        display_entries: "Zobrazených záznamov pre: %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> z <b>%{total}</b> spolu"
