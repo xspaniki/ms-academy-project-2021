@@ -20,7 +20,7 @@
         %td= user.last_name
         %td= user.organization&.name
         %td
-          %a.btn.btn-dark{ href: user_path(user, allowed: true), target: '_blank' }= 'Detail' 
+          %a.btn.btn-dark{ href: user_path(user), target: '_blank' }= 'Detail' 
         %td
           %a.btn.btn-danger{ href: user_path(user), data: { method: :delete, remote: true } }= 'Delete'
         %td

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_presenter
   before_action :set_user, only: [:show, :destroy, :edit, :update, :wakeup]
 
   def index
@@ -43,6 +44,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_presenter
+    @presenter = ::UsersPresenter.new(params)
+  end
 
   def strong_params
     params.require(:user).permit(:first_name, :last_name, :organization_id, addresses_attributes: [:id, :_destroy, :street, :zipcode, :city])
