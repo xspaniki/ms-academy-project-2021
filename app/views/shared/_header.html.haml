@@ -1,0 +1,5 @@
+.row
+  .col.col-12.mb-2.mt-2
+    - if user_signed_in?
+      = "Prihlasený ako: #{current_user.email}"
+      = link_to 'Odhlásiť', destroy_user_session_path, data: { method: :delete }
