@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Discard::Model
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   belongs_to :organization, class_name: 'Organization'
@@ -8,6 +10,8 @@ class User < ApplicationRecord
   enum sex: { man: 'man', woman: 'woman', non_binary: 'non_binary' }
 
   scope :with_organization, -> { where.not(organization_id: nil) }
+
+  default_scope -> { kept }
 
   validates :first_name, presence: true
   validates :last_name, presence: true

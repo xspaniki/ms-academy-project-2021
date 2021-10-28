@@ -33,11 +33,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @user.discard
     flash.now[:success] = 'User destroyed...'
     
     respond_to do |format|
-      format.js { @users = User.includes(:organization) }
+      format.js { @users = User.includes(:organization).page(params[:page]) }
     end
   end
 
