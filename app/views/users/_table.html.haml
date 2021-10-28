@@ -11,8 +11,10 @@
       %th= 'Priezvisko'
       %th= 'Email'
       %th= 'Organizácia'
-      - 4.times do
-        %th
+      - [:delete, :edit, :wakeup].each do |action|
+        - if can?(action, current_user)
+          %th
+      %th
   %tbody
     - @users.each do |user|
       %tr
@@ -22,13 +24,17 @@
         %td= user.email
         %td= user.organization&.name
         %td
-          %a.btn.btn-dark{ href: user_path(user), target: '_blank' }= 'Detail' 
-        %td
-          %a.btn.btn-danger{ href: user_path(user), data: { method: :delete, remote: true } }= 'Delete'
-        %td
-          %a.btn.btn-primary{ href: edit_user_path(user) }= 'Edit'
-        %td
-          %a.btn.btn-warning{ href: wakeup_user_path(user), data: { method: :post } }= 'Wake up'
+          %a.btn.btn-dark{ href: user_path(user) }= 'Detail'
+
+        - if can?(:delete, current_user)
+          %td
+            %a.btn.btn-danger{ href: user_path(user), data: { method: :delete, remote: true } }= 'Delete'
+        - if can?(:edit, current_user)
+          %td
+            %a.btn.btn-primary{ href: edit_user_path(user) }= 'Edit'
+        - if can?(:wakeup, current_user)
+          %td
+            %a.btn.btn-warning{ href: wakeup_user_path(user), data: { method: :post } }= 'Wake up'
 
 .row
   .col-6= paginate @users

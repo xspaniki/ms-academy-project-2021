@@ -2,6 +2,7 @@
 
 #table-wrapper.mb-3= render 'users/table'
 
-%a.btn.btn-primary{ href: new_user_path }= 'New user'
+- if can?(:new, current_user)
+  %a.btn.btn-primary{ href: new_user_path }= 'New user'
 
 %p.mt-2= "Count of organization: #{@presenter.organizations.size}"

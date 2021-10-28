@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_presenter
   before_action :set_user, only: [:show, :destroy, :edit, :update, :wakeup]
 
-  # authorize_resource
+  authorize_resource
 
   def index
     @users = User.includes(:organization).page(params[:page])
