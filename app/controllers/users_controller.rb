@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
   def wakeup
     UsersMailer.wakeup(@user).deliver_now
+    head :ok
   end
 
   private

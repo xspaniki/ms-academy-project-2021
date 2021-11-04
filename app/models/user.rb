@@ -33,11 +33,11 @@ class User < ApplicationRecord
   end
 
   def name_cant_starts_with_bang
-    if first_name.starts_with?('!')
+    if first_name&.starts_with?('!')
       errors.add(:first_name, 'cant starts with !')
     end
     
-    if last_name.starts_with?('!')
+    if last_name&.starts_with?('!')
       errors.add(:last_name, 'cant starts with !')
     end
   end
