@@ -4,5 +4,10 @@
 
 - if can?(:new, current_user)
   %a.btn.btn-primary{ href: new_user_path }= 'New user'
+  %a.btn.btn-warning#import-btn{ href: import_users_path }= 'Import'
 
 %p.mt-2= "Count of organization: #{@presenter.organizations.size}"
+
+#export-wrapper{ style: 'display:none;' }
+  = form_tag import_users_path, method: :post, multipart: true do
+    = file_field_tag :file

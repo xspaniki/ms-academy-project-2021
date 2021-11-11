@@ -46,6 +46,18 @@ class UsersController < ApplicationController
     head :ok
   end
 
+  def import
+    importer = Importers::UsersImporter.new(params[:file])
+    
+    if importer.process
+      message = { success: 'User imported...' }
+    else
+      message = { danger: 'User not imported...' }
+    end
+
+    redirect_to users_url, flash: message
+  end
+
   private
 
   def set_presenter

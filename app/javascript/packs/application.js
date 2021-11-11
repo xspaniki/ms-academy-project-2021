@@ -18,10 +18,22 @@ Turbolinks.start()
 ActiveStorage.start()
 
 $(document).ready(function() {
+  // init select 2 for organizations in users form
   $('.js-data-example-ajax').select2({
     ajax: {
       url: 'http://localhost:3000/organizations',
       dataType: 'json'
     }
   });
+
+  // handle fake import btn
+  $('#import-btn').on('click', function(event) {
+    event.preventDefault();
+    $('#export-wrapper input#file').click();
+  })
+
+  // submit import form
+  $('#export-wrapper input#file').on('change', function(event) {
+    $(this).closest('form').submit();
+  })
 });

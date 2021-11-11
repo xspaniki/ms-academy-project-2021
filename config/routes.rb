@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users do
+  concern :importable do
+    post :import, on: :collection
+  end
+
+  resources :users, concerns: [:importable] do
     post :wakeup, on: :member
   end
 
