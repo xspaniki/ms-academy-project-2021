@@ -11,7 +11,7 @@
       %th= 'Priezvisko'
       %th= 'Email'
       %th= 'Organizácia'
-      - [:delete, :edit, :wakeup].each do |action|
+      - [:edit, :print, :wakeup, :delete].each do |action|
         - if can?(action, current_user)
           %th
       %th
@@ -26,16 +26,18 @@
         %td
           %a.btn.btn-dark{ href: user_path(user) }= 'Detail'
 
-        - if can?(:delete, current_user)
-          %td
-            %a.btn.btn-danger{ href: user_path(user), data: { method: :delete, remote: true } }= 'Delete'
         - if can?(:edit, current_user)
           %td
             %a.btn.btn-primary{ href: edit_user_path(user) }= 'Edit'
+        - if can?(:print, current_user)
+          %td
+            %a.btn.btn-success{ href: print_user_path(user) }= 'Print'
         - if can?(:wakeup, current_user)
           %td
             %a.btn.btn-warning{ href: wakeup_user_path(user), data: { method: :post } }= 'Wake up'
-
+        - if can?(:delete, current_user)
+          %td
+            %a.btn.btn-danger{ href: user_path(user), data: { method: :delete, remote: true } }= 'Delete'
 .row
   .col-6= paginate @users
   .col-6

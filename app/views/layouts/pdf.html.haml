@@ -1,0 +1,35 @@
+%html
+  %head
+    %meta{:content => 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
+    %title PDF
+    = wicked_pdf_stylesheet_link_tag 'admin/application'
+  %body#wicked-pdf{ onload: "number_pages()", data: { default_locale: I18n.default_locale, locale: I18n.locale, env: Rails.env } }
+    = yield
+
+    :javascript
+      function number_pages() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+
+      'use strict';
+      (function(setLineDash) {
+          CanvasRenderingContext2D.prototype.setLineDash = function() {
+              if(!arguments[0].length){
+                  arguments[0] = [1,0];
+              }
+              return setLineDash.apply(this, arguments);
+          };
+      })(CanvasRenderingContext2D.prototype.setLineDash);
+      Function.prototype.bind = Function.prototype.bind || function (thisp) {
+          var fn = this;
+          return function () {
+              return fn.apply(thisp, arguments);
+          };
+      };

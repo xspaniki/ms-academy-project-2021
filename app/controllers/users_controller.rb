@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_presenter
-  before_action :set_user, only: [:show, :destroy, :edit, :update, :wakeup]
+  before_action :set_user, only: [:show, :destroy, :edit, :update, :wakeup, :print]
 
   authorize_resource
 
@@ -60,6 +60,10 @@ class UsersController < ApplicationController
 
   def export
     send_file Exporters::UsersExporter.process, filename: "users_export_#{current_timestamp}.xlsx"
+  end
+
+  def print
+    send_data Printers::UsersPrinter.process({ user: @user }), filename: "users_print_#{current_timestamp}.pdf"
   end
 
   private

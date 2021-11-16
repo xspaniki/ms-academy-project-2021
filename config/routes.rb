@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     get :export, on: :collection
   end
 
-  resources :users, concerns: [:importable, :exportable] do
+  concern :printable do
+    get :print, on: :member
+  end
+
+  resources :users, concerns: [:importable, :exportable, :printable] do
     post :wakeup, on: :member
   end
 
