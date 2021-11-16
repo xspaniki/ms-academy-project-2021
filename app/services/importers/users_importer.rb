@@ -27,10 +27,13 @@ module Importers
             password_confirmation: password
           }
 
-          # TODO send email with password
-
           user = User.find_or_initialize_by(email: data[2])
           user.assign_attributes(attrs)
+          
+          if user.new_record?
+            UsersMailer.invite(user).deliver_now
+          end
+
           user.save
         end
 
