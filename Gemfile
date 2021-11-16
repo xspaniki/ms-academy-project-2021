@@ -72,3 +72,4 @@ gem 'discard'
 gem 'paper_trail'
 gem 'carrierwave', '~> 2.0'
 gem "roo", "~> 2.8.0"
+gem 'write_xlsx'

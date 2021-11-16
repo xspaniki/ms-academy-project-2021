@@ -50,12 +50,16 @@ class UsersController < ApplicationController
     importer = Importers::UsersImporter.new(params[:file])
     
     if importer.process
-      message = { success: 'User imported...' }
+      message = { success: 'Users imported...' }
     else
-      message = { danger: 'User not imported...' }
+      message = { danger: 'Users not imported...' }
     end
 
     redirect_to users_url, flash: message
+  end
+
+  def export
+    send_file Exporters::UsersExporter.process, filename: "users_export_#{current_timestamp}.xlsx"
   end
 
   private

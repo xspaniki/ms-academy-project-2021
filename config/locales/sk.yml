@@ -1,4 +1,8 @@
 sk:
+  time:
+    formats:
+      timestamp: '%d-%m-%Y-%H-%M-%S'
+
   users:
     index:
       title: 'Zoznam používateľov'

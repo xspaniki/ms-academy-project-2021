@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     post :import, on: :collection
   end
 
-  resources :users, concerns: [:importable] do
+  concern :exportable do
+    get :export, on: :collection
+  end
+
+  resources :users, concerns: [:importable, :exportable] do
     post :wakeup, on: :member
   end
 

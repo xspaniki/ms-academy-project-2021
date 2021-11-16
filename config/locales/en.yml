@@ -1,4 +1,8 @@
 en:
+  time:
+    formats:
+      timestamp: '%d-%m-%Y-%H-%M-%S'
+
   users:
     index:
       title: 'List of users'

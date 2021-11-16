@@ -5,6 +5,7 @@
 - if can?(:new, current_user)
   %a.btn.btn-primary{ href: new_user_path }= 'New user'
   %a.btn.btn-warning#import-btn{ href: import_users_path }= 'Import'
+  %a.btn.btn-success#export-btn{ href: export_users_path }= 'Export'
 
 %p.mt-2= "Count of organization: #{@presenter.organizations.size}"
 
